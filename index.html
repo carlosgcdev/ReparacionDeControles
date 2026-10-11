@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reparaciones de controles Xbox, Playstation y Nintendo Switch Colima</title>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Inter + Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Enlace al CSS externo -->
+  <link rel="stylesheet" href="style.css?v=20261011" />
+</head>
+<body>
+
+  <!-- FONDO INTERACTIVO DE PARTÍCULAS -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-logo">
+        <i class="fas fa-gamepad"></i> Reparaciones de controles Xbox, Playstation y Nintendo Switch Colima
+      </a>
+      <ul class="nav-links">
+        <li><a href="#rastrear">Rastrear</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Reparación <span class="highlight">profesional</span> de controles y consolas</h1>
+        <p class="hero-desc">
+          Xbox · PlayStation · Nintendo Switch
+        </p>
+        <div class="hero-buttons">
+          <a href="#servicios" class="btn btn-primary">
+            <i class="fas fa-tools"></i> Ver Servicios
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">+500</span>
+            <span class="stat-label">Controles reparados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Casos de éxito</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Gratis</span>
+            <span class="stat-label">Diagnóstico Inicial</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="controller-float">
+          <i class="fas fa-gamepad"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="cotizador-visual" id="cotizar">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Interactivo</span>
+        <h2>Reporta tu Falla Visualmente</h2>
+        <p>Selecciona tu consola y toca las partes del control que fallan para generar tu reporte automático.</p>
+      </div>
+
+      <div class="cotizador-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 30px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); max-width: 700px; margin: 0 auto;">
+        
+        <div class="selector-consola" style="display: flex; gap: 15px; justify-content: center; width: 100%; flex-wrap: wrap;">
+          <button class="btn-consola active" data-consola="Xbox" style="padding: 10px 20px; background: #107c10; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;"><i class="fab fa-xbox"></i> Xbox</button>
+          <button class="btn-consola" data-consola="PlayStation" style="padding: 10px 20px; background: #003087; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;"><i class="fab fa-playstation"></i> PlayStation</button>
+          <button class="btn-consola" data-consola="Nintendo Switch" style="padding: 10px 20px; background: #e60012; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;"><i class="fas fa-gamepad"></i> Nintendo Switch</button>
+        </div>
+
+        <!-- Escenario: escala los dibujos de los controles para que quepan en celular sin deformarse -->
+        <div class="mandos-escenario" id="mandosEscenario">
+
+        <!-- ============================================================
+             CONTROLES ILUSTRADOS (SVG). Cada pieza tocable es un <g class="componente-mando pieza">
+             con data-falla = nombre de la falla que se envía en el reporte.
+             Las formas con class="marca" se pintan de rojo al seleccionar la pieza.
+             ============================================================ -->
+
+        <!-- MANDO XBOX -->
+        <div class="mando-dinamico active" id="mando-xbox">
+          <svg class="mando-svg" viewBox="0 0 400 300" role="group" aria-label="Control de Xbox: toca las piezas que fallan">
+            <defs>
+              <linearGradient id="xb-cuerpo" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3d4045"/>
+                <stop offset="0.5" stop-color="#25272b"/>
+                <stop offset="1" stop-color="#141518"/>
+              </linearGradient>
+              <linearGradient id="xb-gatillo" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#34373c"/>
+                <stop offset="1" stop-color="#1a1b1e"/>
+              </linearGradient>
+              <radialGradient id="xb-stick" cx="0.4" cy="0.35" r="0.75">
+                <stop offset="0" stop-color="#55585e"/>
+                <stop offset="0.6" stop-color="#2a2c30"/>
+                <stop offset="1" stop-color="#121315"/>
+              </radialGradient>
+              <radialGradient id="xb-brillo" cx="0.5" cy="0" r="0.8">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Gatillos (detrás del cuerpo) -->
+            <g class="componente-mando pieza" data-falla="Gatillo Izquierdo (LT)" tabindex="0" role="button" aria-label="Gatillo izquierdo LT">
+              <title>Gatillo izquierdo (LT)</title>
+              <path class="marca" d="M64 102 C64 66 88 42 122 40 C141 39 152 50 152 64 L152 78 C114 78 88 86 64 102 Z" fill="url(#xb-gatillo)" stroke="#4a4d53" stroke-width="1.5"/>
+              <text class="etiqueta" x="112" y="62">LT</text>
+            </g>
+            <g class="componente-mando pieza" data-falla="Gatillo Derecho (RT)" tabindex="0" role="button" aria-label="Gatillo derecho RT">
+              <title>Gatillo derecho (RT)</title>
+              <path class="marca" d="M336 102 C336 66 312 42 278 40 C259 39 248 50 248 64 L248 78 C286 78 312 86 336 102 Z" fill="url(#xb-gatillo)" stroke="#4a4d53" stroke-width="1.5"/>
+              <text class="etiqueta" x="288" y="62">RT</text>
+            </g>
+
+            <!-- Cuerpo -->
+            <path d="M128 72 C160 64 240 64 272 72 C322 74 346 84 362 112 C384 156 396 220 390 252 C384 280 350 288 328 268 C308 248 294 226 268 220 C238 214 162 214 132 220 C106 226 92 248 72 268 C50 288 16 280 10 252 C4 220 16 156 38 112 C54 84 78 74 128 72 Z" fill="url(#xb-cuerpo)" stroke="#4b4e54" stroke-width="2"/>
+            <path d="M128 76 C160 68 240 68 272 76 C318 78 340 88 354 112 C300 98 100 98 46 112 C60 88 82 78 128 76 Z" fill="url(#xb-brillo)" pointer-events="none"/>
+
+            <!-- Bumpers -->
+            <g class="componente-mando pieza" data-falla="Bumper Izquierdo (LB)" tabindex="0" role="button" aria-label="Bumper izquierdo LB">
+              <title>Bumper izquierdo (LB)</title>
+              <path class="marca" d="M42 120 C56 92 88 78 134 74 L158 73 C160 82 156 89 147 90 C104 91 76 102 55 127 Z" fill="#303338" stroke="#5a5e65" stroke-width="1.5"/>
+              <text class="etiqueta" x="104" y="88">LB</text>
+            </g>
+            <g class="componente-mando pieza" data-falla="Bumper Derecho (RB)" tabindex="0" role="button" aria-label="Bumper derecho RB">
+              <title>Bumper derecho (RB)</title>
+              <path class="marca" d="M358 120 C344 92 312 78 266 74 L242 73 C240 82 244 89 253 90 C296 91 324 102 345 127 Z" fill="#303338" stroke="#5a5e65" stroke-width="1.5"/>
+              <text class="etiqueta" x="296" y="88">RB</text>
+            </g>
+
+            <!-- Puerto USB-C (borde superior) -->
+            <g class="componente-mando pieza" data-falla="Puerto USB" tabindex="0" role="button" aria-label="Puerto USB">
+              <title>Puerto USB</title>
+              <rect class="zona" x="178" y="56" width="44" height="22"/>
+              <rect class="marca" x="186" y="64" width="28" height="7" rx="3.5" fill="#0b0c0e" stroke="#5f636a"/>
+            </g>
+
+            <!-- Botón Xbox (guía) -->
+            <g class="componente-mando pieza" data-falla="Botón Guía" tabindex="0" role="button" aria-label="Botón Xbox o guía">
+              <title>Botón Xbox (guía)</title>
+              <circle cx="200" cy="100" r="17" fill="#17181b" stroke="#55595f" stroke-width="1.5"/>
+              <circle class="marca" cx="200" cy="100" r="12.5" fill="#f1f3f4"/>
+              <text class="icono-marca" x="200" y="100.5" fill="#107c10" font-size="15">&#xf412;</text>
+            </g>
+
+            <!-- Vista / Compartir / Menú -->
+            <g class="componente-mando pieza" data-falla="Botón Vista" tabindex="0" role="button" aria-label="Botón Vista">
+              <title>Botón Vista</title>
+              <circle class="zona" cx="168" cy="132" r="13"/>
+              <circle class="marca" cx="168" cy="132" r="8" fill="#2b2d32" stroke="#5a5e65"/>
+              <rect x="163.5" y="128" width="6" height="5" rx="1" fill="none" stroke="#d6d9de" stroke-width="1"/>
+              <rect x="166.5" y="131" width="6" height="5" rx="1" fill="#2b2d32" stroke="#d6d9de" stroke-width="1"/>
+            </g>
+            <rect x="193" y="139" width="14" height="7" rx="3.5" fill="#2b2d32" stroke="#4f5359" pointer-events="none"/>
+            <g class="componente-mando pieza" data-falla="Botón Menu" tabindex="0" role="button" aria-label="Botón Menú">
+              <title>Botón Menú</title>
+              <circle class="zona" cx="232" cy="132" r="13"/>
+              <circle class="marca" cx="232" cy="132" r="8" fill="#2b2d32" stroke="#5a5e65"/>
+              <path d="M228 129 h8 M228 132 h8 M228 135 h8" stroke="#d6d9de" stroke-width="1.2" stroke-linecap="round"/>
+            </g>
+
+            <!-- Stick izquierdo -->
+            <g class="componente-mando pieza" data-falla="Stick Izquierdo (Drift)" tabindex="0" role="button" aria-label="Stick izquierdo">
+              <title>Stick izquierdo (drift)</title>
+              <circle cx="114" cy="130" r="30" fill="#0d0e10" stroke="#3a3d42"/>
+              <circle class="marca" cx="114" cy="130" r="22" fill="url(#xb-stick)" stroke="#060607" stroke-width="1.5"/>
+              <circle cx="114" cy="130" r="15" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="3"/>
+            </g>
+
+            <!-- Botones A B X Y -->
+            <g class="componente-mando pieza" data-falla="Botones de Acción (A, B, X, Y)" tabindex="0" role="button" aria-label="Botones A, B, X y Y">
+              <title>Botones A, B, X, Y</title>
+              <circle class="zona" cx="288" cy="130" r="38"/>
+              <circle class="marca" cx="288" cy="107" r="11.5" fill="#1f2023" stroke="#45484e"/>
+              <circle class="marca" cx="311" cy="130" r="11.5" fill="#1f2023" stroke="#45484e"/>
+              <circle class="marca" cx="288" cy="153" r="11.5" fill="#1f2023" stroke="#45484e"/>
+              <circle class="marca" cx="265" cy="130" r="11.5" fill="#1f2023" stroke="#45484e"/>
+              <text class="letra" x="288" y="107.5" fill="#f5c518">Y</text>
+              <text class="letra" x="311" y="130.5" fill="#ef4b45">B</text>
+              <text class="letra" x="288" y="153.5" fill="#52c05a">A</text>
+              <text class="letra" x="265" y="130.5" fill="#3d8ff0">X</text>
+            </g>
+
+            <!-- Cruceta -->
+            <g class="componente-mando pieza" data-falla="Cruceta / D-Pad" tabindex="0" role="button" aria-label="Cruceta">
+              <title>Cruceta (D-Pad)</title>
+              <circle cx="156" cy="178" r="28" fill="#0d0e10" stroke="#3a3d42"/>
+              <path class="marca" transform="translate(0,-17)" d="M147 175 a3 3 0 0 1 3 -3 h12 a3 3 0 0 1 3 3 v11 h11 a3 3 0 0 1 3 3 v12 a3 3 0 0 1 -3 3 h-11 v11 a3 3 0 0 1 -3 3 h-12 a3 3 0 0 1 -3 -3 v-11 h-11 a3 3 0 0 1 -3 -3 v-12 a3 3 0 0 1 3 -3 h11 z" fill="#2c2e33" stroke="#50545a"/>
+              <circle cx="156" cy="178" r="4" fill="#1d1e21" pointer-events="none"/>
+            </g>
+
+            <!-- Stick derecho -->
+            <g class="componente-mando pieza" data-falla="Stick Derecho (Drift)" tabindex="0" role="button" aria-label="Stick derecho">
+              <title>Stick derecho (drift)</title>
+              <circle cx="244" cy="178" r="30" fill="#0d0e10" stroke="#3a3d42"/>
+              <circle class="marca" cx="244" cy="178" r="22" fill="url(#xb-stick)" stroke="#060607" stroke-width="1.5"/>
+              <circle cx="244" cy="178" r="15" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="3"/>
+            </g>
+
+            <!-- Jack de audio (borde inferior) -->
+            <g class="componente-mando pieza" data-falla="Puerto Jack 3.5mm" tabindex="0" role="button" aria-label="Puerto jack de audio">
+              <title>Puerto jack 3.5 mm</title>
+              <rect class="zona" x="184" y="198" width="32" height="20"/>
+              <rect x="190" y="205" width="20" height="8" rx="4" fill="#191a1d" stroke="#45484e"/>
+              <circle class="marca" cx="200" cy="209" r="3" fill="#050506" stroke="#6a6e75"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- MANDO PLAYSTATION (DualSense) -->
+        <div class="mando-dinamico" id="mando-playstation" style="display: none;">
+          <svg class="mando-svg" viewBox="0 0 400 300" role="group" aria-label="Control de PlayStation: toca las piezas que fallan">
+            <defs>
+              <linearGradient id="ps-cuerpo" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="0.6" stop-color="#eceef1"/>
+                <stop offset="1" stop-color="#cfd3d9"/>
+              </linearGradient>
+              <linearGradient id="ps-panel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2a2c32"/>
+                <stop offset="1" stop-color="#15161a"/>
+              </linearGradient>
+              <linearGradient id="ps-touch" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="1" stop-color="#e4e7eb"/>
+              </linearGradient>
+              <radialGradient id="ps-stick" cx="0.4" cy="0.35" r="0.75">
+                <stop offset="0" stop-color="#4c4f56"/>
+                <stop offset="0.6" stop-color="#26282d"/>
+                <stop offset="1" stop-color="#101114"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Gatillos L2 / R2 -->
+            <g class="componente-mando pieza" data-falla="Gatillo Izquierdo (L2)" tabindex="0" role="button" aria-label="Gatillo izquierdo L2">
+              <title>Gatillo izquierdo (L2)</title>
+              <path class="marca" d="M66 106 C66 70 90 46 124 44 C143 43 154 54 154 68 L154 82 C116 82 90 90 66 106 Z" fill="#e3e6ea" stroke="#aeb4bd" stroke-width="1.5"/>
+              <text class="etiqueta oscura" x="114" y="66">L2</text>
+            </g>
+            <g class="componente-mando pieza" data-falla="Gatillo Derecho (R2)" tabindex="0" role="button" aria-label="Gatillo derecho R2">
+              <title>Gatillo derecho (R2)</title>
+              <path class="marca" d="M334 106 C334 70 310 46 276 44 C257 43 246 54 246 68 L246 82 C284 82 310 90 334 106 Z" fill="#e3e6ea" stroke="#aeb4bd" stroke-width="1.5"/>
+              <text class="etiqueta oscura" x="286" y="66">R2</text>
+            </g>
+
+            <!-- Cuerpo -->
+            <path d="M120 78 C150 70 250 70 280 78 C330 80 352 92 368 124 C388 168 398 236 388 262 C378 288 344 286 326 262 C312 240 300 222 280 216 C250 208 150 208 120 216 C100 222 88 240 74 262 C56 286 22 288 12 262 C2 236 12 168 32 124 C48 92 70 80 120 78 Z" fill="url(#ps-cuerpo)" stroke="#b3b9c2" stroke-width="2"/>
+
+            <!-- Panel negro central -->
+            <path d="M126 150 C160 140 240 140 274 150 C280 152 283 157 284 163 L289 199 C290 206 285 210 278 209 C240 202 160 202 122 209 C115 210 110 206 111 199 L116 163 C117 157 120 152 126 150 Z" fill="url(#ps-panel)" pointer-events="none"/>
+
+            <!-- L1 / R1 -->
+            <g class="componente-mando pieza" data-falla="Bumper Izquierdo (L1)" tabindex="0" role="button" aria-label="Bumper izquierdo L1">
+              <title>Bumper izquierdo (L1)</title>
+              <path class="marca" d="M38 126 C52 98 86 84 132 80 L158 79 C160 88 156 95 147 96 C104 97 74 108 52 133 Z" fill="#f3f4f6" stroke="#a9afb8" stroke-width="1.5"/>
+              <text class="etiqueta oscura" x="102" y="94">L1</text>
+            </g>
+            <g class="componente-mando pieza" data-falla="Bumper Derecho (R1)" tabindex="0" role="button" aria-label="Bumper derecho R1">
+              <title>Bumper derecho (R1)</title>
+              <path class="marca" d="M362 126 C348 98 314 84 268 80 L242 79 C240 88 244 95 253 96 C296 97 326 108 348 133 Z" fill="#f3f4f6" stroke="#a9afb8" stroke-width="1.5"/>
+              <text class="etiqueta oscura" x="298" y="94">R1</text>
+            </g>
+
+            <!-- Touchpad con barra de luz -->
+            <g class="componente-mando pieza" data-falla="Touchpad Central" tabindex="0" role="button" aria-label="Touchpad">
+              <title>Touchpad</title>
+              <path class="marca" d="M150 84 L250 84 C258 84 262 90 262 98 L258 134 C256 142 250 146 242 146 L158 146 C150 146 144 142 142 134 L138 98 C138 90 142 84 150 84 Z" fill="url(#ps-touch)" stroke="#bcc2ca" stroke-width="1.5"/>
+              <path d="M134 98 L138 136 M266 98 L262 136" stroke="#4d9bff" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+            </g>
+            <!-- Create y Options (decorativos) -->
+            <rect x="120" y="88" width="5" height="13" rx="2.5" fill="#c9cdd3" transform="rotate(-15 122 94)" pointer-events="none"/>
+            <rect x="275" y="88" width="5" height="13" rx="2.5" fill="#c9cdd3" transform="rotate(15 278 94)" pointer-events="none"/>
+
+            <!-- Cruceta (4 flechas) -->
+            <g class="componente-mando pieza" data-falla="Cruceta D-Pad Direccional" tabindex="0" role="button" aria-label="Cruceta">
+              <title>Cruceta (D-Pad)</title>
+              <circle cx="92" cy="136" r="31" fill="#000000" fill-opacity="0.05"/>
+              <path class="marca" d="M84 113 h16 v12 l-8 7 l-8 -7 z" fill="#e1e4e8" stroke="#a6acb5"/>
+              <path class="marca" d="M84 159 h16 v-12 l-8 -7 l-8 7 z" fill="#e1e4e8" stroke="#a6acb5"/>
+              <path class="marca" d="M69 128 v16 h12 l7 -8 l-7 -8 z" fill="#e1e4e8" stroke="#a6acb5"/>
+              <path class="marca" d="M115 128 v16 h-12 l-7 -8 l7 -8 z" fill="#e1e4e8" stroke="#a6acb5"/>
+            </g>
+
+            <!-- Botones de acción -->
+            <g class="componente-mando pieza" data-falla="Botones de Acción (✕, ○, △, ◻)" tabindex="0" role="button" aria-label="Botones equis, círculo, triángulo y cuadrado">
+              <title>Botones ✕ ○ △ ◻</title>
+              <circle class="zona" cx="308" cy="136" r="38"/>
+              <circle class="marca" cx="308" cy="113" r="11.5" fill="#e6e8ec" stroke="#a6acb5"/>
+              <circle class="marca" cx="331" cy="136" r="11.5" fill="#e6e8ec" stroke="#a6acb5"/>
+              <circle class="marca" cx="308" cy="159" r="11.5" fill="#e6e8ec" stroke="#a6acb5"/>
+              <circle class="marca" cx="285" cy="136" r="11.5" fill="#e6e8ec" stroke="#a6acb5"/>
+              <path d="M308 107 L314 117 L302 117 Z" fill="none" stroke="#2fb67c" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="331" cy="136" r="5" fill="none" stroke="#e5484d" stroke-width="1.8"/>
+              <path d="M304 155 L312 163 M312 155 L304 163" stroke="#4f7df3" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="281" y="132" width="8" height="8" fill="none" stroke="#e570b5" stroke-width="1.8"/>
+            </g>
+
+            <!-- Sticks -->
+            <g class="componente-mando pieza" data-falla="Joystick Izquierdo (Drift)" tabindex="0" role="button" aria-label="Stick izquierdo">
+              <title>Stick izquierdo (drift)</title>
+              <circle cx="158" cy="176" r="25" fill="#0c0d10" stroke="#3a3d43"/>
+              <circle class="marca" cx="158" cy="176" r="19" fill="url(#ps-stick)" stroke="#050506" stroke-width="1.5"/>
+              <circle cx="158" cy="176" r="12.5" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="3"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Joystick Derecho (Drift)" tabindex="0" role="button" aria-label="Stick derecho">
+              <title>Stick derecho (drift)</title>
+              <circle cx="242" cy="176" r="25" fill="#0c0d10" stroke="#3a3d43"/>
+              <circle class="marca" cx="242" cy="176" r="19" fill="url(#ps-stick)" stroke="#050506" stroke-width="1.5"/>
+              <circle cx="242" cy="176" r="12.5" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="3"/>
+            </g>
+
+            <!-- Botón PS y micrófono -->
+            <g class="componente-mando pieza" data-falla="Botón PS" tabindex="0" role="button" aria-label="Botón PS">
+              <title>Botón PS</title>
+              <circle class="zona" cx="200" cy="172" r="13"/>
+              <circle class="marca" cx="200" cy="172" r="9" fill="#2a2c31" stroke="#55595f"/>
+              <text class="icono-marca" x="200" y="172.5" fill="#d6d9de" font-size="9">&#xf3df;</text>
+            </g>
+            <rect x="193" y="188" width="14" height="4" rx="2" fill="#f28b2c" opacity="0.85" pointer-events="none"/>
+
+            <!-- Puerto USB-C (arriba) y jack de audio (abajo) -->
+            <g class="componente-mando pieza" data-falla="Puerto USB-C / Jack de Audio" tabindex="0" role="button" aria-label="Puerto USB-C y jack de audio">
+              <title>Puerto USB-C / jack de audio</title>
+              <rect class="zona" x="180" y="62" width="40" height="20"/>
+              <rect class="zona" x="186" y="194" width="28" height="18"/>
+              <rect class="marca" x="189" y="70" width="22" height="6" rx="3" fill="#15161a" stroke="#8d939c"/>
+              <circle class="marca" cx="200" cy="203" r="3.5" fill="#050506" stroke="#6a6e75"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- MANDO NINTENDO SWITCH (proporciones reales; Joy-Con separados para ver los rieles) -->
+        <div class="mando-dinamico" id="mando-nintendo-switch" style="display: none;">
+          <svg class="mando-svg" viewBox="0 0 404 214" role="group" aria-label="Nintendo Switch: toca las piezas que fallan">
+            <defs>
+              <linearGradient id="sw-azul" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#22c4f5"/>
+                <stop offset="1" stop-color="#0089bf"/>
+              </linearGradient>
+              <linearGradient id="sw-rojo" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff5a62"/>
+                <stop offset="1" stop-color="#d4000f"/>
+              </linearGradient>
+              <linearGradient id="sw-pantalla" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1c2027"/>
+                <stop offset="1" stop-color="#07080a"/>
+              </linearGradient>
+              <radialGradient id="sw-stick" cx="0.4" cy="0.35" r="0.75">
+                <stop offset="0" stop-color="#4a4d53"/>
+                <stop offset="1" stop-color="#121316"/>
+              </radialGradient>
+            </defs>
+
+            <!-- ===== Joy-Con izquierdo ===== -->
+            <g class="componente-mando pieza" data-falla="Gatillo izquierdo" tabindex="0" role="button" aria-label="Gatillo izquierdo L o ZL">
+              <title>Gatillo izquierdo (L / ZL)</title>
+              <path class="marca" d="M8 78 C8 48 26 28 52 28 L63 28 L63 40 L44 40 C22 40 8 56 8 78 Z" fill="#0a6d96" stroke="#06506f"/>
+            </g>
+            <path d="M63 40 L44 40 C22 40 8 56 8 78 L8 159 C8 181 22 197 44 197 L63 197 Z" fill="url(#sw-azul)" stroke="#0a6f99" stroke-width="1.5"/>
+            <rect x="58" y="46" width="5" height="145" fill="#1a2630" pointer-events="none"/>
+
+            <g class="componente-mando pieza" data-falla="Botón liberación Joy-Con izquierdo" tabindex="0" role="button" aria-label="Botón de liberación del Joy-Con izquierdo">
+              <title>Botón de liberación (Joy-Con izq.)</title>
+              <rect class="zona" x="44" y="26" width="22" height="16"/>
+              <rect class="marca" x="50" y="31" width="10" height="6" rx="1.5" fill="#101215" stroke="#3d4248"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botón SL izquierdo" tabindex="0" role="button" aria-label="Botón SL del Joy-Con izquierdo">
+              <title>Botón SL (Joy-Con izq.)</title>
+              <rect class="zona" x="52" y="52" width="16" height="28"/>
+              <rect class="marca" x="56.5" y="56" width="7" height="18" rx="2.5" fill="#0d2e3c" stroke="#3fb6e0"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botón SR izquierdo" tabindex="0" role="button" aria-label="Botón SR del Joy-Con izquierdo">
+              <title>Botón SR (Joy-Con izq.)</title>
+              <rect class="zona" x="52" y="158" width="16" height="28"/>
+              <rect class="marca" x="56.5" y="162" width="7" height="18" rx="2.5" fill="#0d2e3c" stroke="#3fb6e0"/>
+            </g>
+
+            <g class="componente-mando pieza" data-falla="Botón Minus" tabindex="0" role="button" aria-label="Botón menos">
+              <title>Botón − (menos)</title>
+              <rect class="zona" x="34" y="45" width="20" height="16"/>
+              <rect class="marca" x="38" y="51" width="12" height="4" rx="2" fill="#0b3d53"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Stick izquierdo" tabindex="0" role="button" aria-label="Stick izquierdo">
+              <title>Stick izquierdo (drift)</title>
+              <circle cx="35" cy="82" r="15" fill="#0b3d53"/>
+              <circle class="marca" cx="35" cy="82" r="11" fill="url(#sw-stick)" stroke="#050506"/>
+              <circle cx="35" cy="82" r="7" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2.5"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="D-Pad" tabindex="0" role="button" aria-label="Botones de dirección">
+              <title>Botones de dirección</title>
+              <circle class="zona" cx="35" cy="130" r="21"/>
+              <circle class="marca" cx="35" cy="118" r="5.8" fill="#0b3d53" stroke="#06293a"/>
+              <circle class="marca" cx="47" cy="130" r="5.8" fill="#0b3d53" stroke="#06293a"/>
+              <circle class="marca" cx="35" cy="142" r="5.8" fill="#0b3d53" stroke="#06293a"/>
+              <circle class="marca" cx="23" cy="130" r="5.8" fill="#0b3d53" stroke="#06293a"/>
+              <path d="M35 115.8 l2.2 3.6 h-4.4 z M49.2 130 l-3.6 2.2 v-4.4 z M35 144.2 l2.2 -3.6 h-4.4 z M20.8 130 l3.6 2.2 v-4.4 z" fill="#9fdaf0" pointer-events="none"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botón captura Joy-Con izquierdo" tabindex="0" role="button" aria-label="Botón de captura">
+              <title>Botón de captura</title>
+              <rect class="zona" x="32" y="160" width="22" height="22"/>
+              <rect class="marca" x="38" y="166" width="10" height="10" rx="2" fill="#0b3d53"/>
+              <circle cx="43" cy="171" r="2.5" fill="#06293a" pointer-events="none"/>
+            </g>
+
+            <!-- ===== Consola ===== -->
+            <rect x="69" y="40" width="266" height="157" rx="9" fill="#2c2e33" stroke="#17181b" stroke-width="1.5"/>
+            <g class="componente-mando pieza" data-falla="Rieles de carga" tabindex="0" role="button" aria-label="Rieles de carga de la consola">
+              <title>Rieles de carga (consola)</title>
+              <rect class="marca" x="69" y="52" width="5" height="133" rx="2" fill="#44474e"/>
+              <rect class="marca" x="330" y="52" width="5" height="133" rx="2" fill="#44474e"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Pantalla" tabindex="0" role="button" aria-label="Pantalla">
+              <title>Pantalla</title>
+              <rect class="marca" x="91" y="56" width="222" height="125" rx="4" fill="url(#sw-pantalla)" stroke="#060708"/>
+              <path d="M91 60 L185 60 L120 181 L95 181 C92 181 91 179 91 176 Z" fill="#ffffff" opacity="0.05" pointer-events="none"/>
+              <text x="202" y="119" fill="#4b5059" font-size="11" font-weight="600" letter-spacing="2">PANTALLA</text>
+            </g>
+            <g class="componente-mando pieza" data-falla="Puerto USB-C" tabindex="0" role="button" aria-label="Puerto USB-C de la consola">
+              <title>Puerto USB-C (consola)</title>
+              <rect class="zona" x="182" y="184" width="40" height="20"/>
+              <rect class="marca" x="191" y="190" width="22" height="6" rx="3" fill="#0b0c0e" stroke="#6a6e75"/>
+            </g>
+
+            <!-- ===== Joy-Con derecho ===== -->
+            <g class="componente-mando pieza" data-falla="Gatillo derecho" tabindex="0" role="button" aria-label="Gatillo derecho R o ZR">
+              <title>Gatillo derecho (R / ZR)</title>
+              <path class="marca" d="M396 78 C396 48 378 28 352 28 L341 28 L341 40 L360 40 C382 40 396 56 396 78 Z" fill="#ad0010" stroke="#7d000b"/>
+            </g>
+            <path d="M341 40 L360 40 C382 40 396 56 396 78 L396 159 C396 181 382 197 360 197 L341 197 Z" fill="url(#sw-rojo)" stroke="#a3000d" stroke-width="1.5"/>
+            <rect x="341" y="46" width="5" height="145" fill="#2a1a1c" pointer-events="none"/>
+
+            <g class="componente-mando pieza" data-falla="Botón liberación Joy-Con derecho" tabindex="0" role="button" aria-label="Botón de liberación del Joy-Con derecho">
+              <title>Botón de liberación (Joy-Con der.)</title>
+              <rect class="zona" x="338" y="26" width="22" height="16"/>
+              <rect class="marca" x="344" y="31" width="10" height="6" rx="1.5" fill="#101215" stroke="#3d4248"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botón SR derecho" tabindex="0" role="button" aria-label="Botón SR del Joy-Con derecho">
+              <title>Botón SR (Joy-Con der.)</title>
+              <rect class="zona" x="336" y="52" width="16" height="28"/>
+              <rect class="marca" x="340.5" y="56" width="7" height="18" rx="2.5" fill="#3d0a10" stroke="#ff6b73"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botón SL derecho" tabindex="0" role="button" aria-label="Botón SL del Joy-Con derecho">
+              <title>Botón SL (Joy-Con der.)</title>
+              <rect class="zona" x="336" y="158" width="16" height="28"/>
+              <rect class="marca" x="340.5" y="162" width="7" height="18" rx="2.5" fill="#3d0a10" stroke="#ff6b73"/>
+            </g>
+
+            <g class="componente-mando pieza" data-falla="Botón Plus" tabindex="0" role="button" aria-label="Botón más">
+              <title>Botón + (más)</title>
+              <rect class="zona" x="356" y="44" width="20" height="20"/>
+              <path class="marca" d="M363.5 47 h5 v4.5 h4.5 v5 h-4.5 v4.5 h-5 v-4.5 h-4.5 v-5 h4.5 z" fill="#5c0710"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botones de acción A/B/X/Y" tabindex="0" role="button" aria-label="Botones A, B, X y Y">
+              <title>Botones A, B, X, Y</title>
+              <circle class="zona" cx="369" cy="82" r="21"/>
+              <circle class="marca" cx="369" cy="70" r="5.8" fill="#5c0710" stroke="#3a0308"/>
+              <circle class="marca" cx="381" cy="82" r="5.8" fill="#5c0710" stroke="#3a0308"/>
+              <circle class="marca" cx="369" cy="94" r="5.8" fill="#5c0710" stroke="#3a0308"/>
+              <circle class="marca" cx="357" cy="82" r="5.8" fill="#5c0710" stroke="#3a0308"/>
+              <text class="letra chica" x="369" y="70.5">X</text>
+              <text class="letra chica" x="381" y="82.5">A</text>
+              <text class="letra chica" x="369" y="94.5">B</text>
+              <text class="letra chica" x="357" y="82.5">Y</text>
+            </g>
+            <g class="componente-mando pieza" data-falla="Stick derecho" tabindex="0" role="button" aria-label="Stick derecho">
+              <title>Stick derecho (drift)</title>
+              <circle cx="369" cy="130" r="15" fill="#5c0710"/>
+              <circle class="marca" cx="369" cy="130" r="11" fill="url(#sw-stick)" stroke="#050506"/>
+              <circle cx="369" cy="130" r="7" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2.5"/>
+            </g>
+            <g class="componente-mando pieza" data-falla="Botón Home" tabindex="0" role="button" aria-label="Botón Home">
+              <title>Botón Home</title>
+              <circle class="zona" cx="362" cy="171" r="12"/>
+              <circle class="marca" cx="362" cy="171" r="6.5" fill="#3a0308" stroke="#d9dbe0" stroke-width="1.8"/>
+              <path d="M359 172 l3 -2.6 l3 2.6 v2.6 h-6 z" fill="#d9dbe0" pointer-events="none"/>
+            </g>
+          </svg>
+        </div>
+
+        </div><!-- /mandos-escenario -->
+
+        <div class="mandos-ayuda" aria-hidden="true">
+          <span><i class="fas fa-hand-pointer"></i> Toca una pieza para marcarla</span>
+          <span><span class="punto"></span> Pieza con falla</span>
+        </div>
+
+        <div id="resumen-reporte" style="width: 100%; text-align: center; font-size: 15px; min-height: 24px; color: #aaa;">
+          Haz clic en las piezas que fallan en el control de arriba.
+        </div>
+
+        <!-- Datos del cliente (solo se muestran si el sistema de órdenes está conectado) -->
+        <form class="datos-cliente" id="datosCliente" hidden novalidate autocomplete="on">
+          <p class="datos-cliente-titulo"><i class="fas fa-ticket"></i> Déjanos tus datos para generar tu <strong>folio de seguimiento</strong></p>
+          <div class="campos-fila">
+            <div class="campo">
+              <label for="cotNombre">Nombre</label>
+              <input type="text" id="cotNombre" name="nombre" maxlength="60" autocomplete="given-name" placeholder="Tu nombre">
+            </div>
+            <div class="campo">
+              <label for="cotTelefono">Teléfono (10 dígitos)</label>
+              <input type="tel" id="cotTelefono" name="telefono" maxlength="14" inputmode="numeric" autocomplete="tel-national" placeholder="312 123 4567">
+            </div>
+          </div>
+          <!-- Campo trampa contra robots: las personas no lo ven -->
+          <div class="campo-trampa" aria-hidden="true">
+            <label for="cotSitioWeb">No llenar</label>
+            <input type="text" id="cotSitioWeb" name="sitio_web" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="datos-cliente-error" id="datosClienteError" role="alert"></p>
+        </form>
+
+        <button id="btnEnviarReporte" class="btn btn-primary" style="width: 100%; max-width: 300px; opacity: 0.6; pointer-events: none;"><i class="fab fa-whatsapp"></i> Enviar a Servicio Técnico</button>
+
+        <!-- Resultado del prerregistro: folio + botón para continuar en WhatsApp -->
+        <div class="folio-resultado" id="folioResultado" hidden aria-live="polite"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RASTREA TU REPARACIÓN -->
+  <section class="rastrear" id="rastrear">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Seguimiento</span>
+        <h2>Rastrea tu reparación</h2>
+        <p>Escribe el número de teléfono que dejaste en el taller para ver en qué va tu equipo.</p>
+      </div>
+
+      <div class="rastreo-wrapper">
+        <form class="rastreo-form" id="formRastreo" novalidate>
+          <div class="campo">
+            <label for="rastreoTel">Tu número de teléfono (10 dígitos)</label>
+            <input type="tel" id="rastreoTel" name="tel" maxlength="16" inputmode="numeric" placeholder="312 123 4567" autocomplete="tel-national" required>
+          </div>
+          <button type="submit" class="btn btn-primary" id="btnRastrear"><i class="fas fa-magnifying-glass"></i> Consultar</button>
+        </form>
+
+        <div class="rastreo-resultado" id="rastreoResultado" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Especialidades</span>
+        <h2>Soporte Multiplataforma</h2>
+        <p>Soluciones definitivas con componentes de alta durabilidad.</p>
+      </div>
+      <div class="servicios-grid">
+        <!-- XBOX -->
+       <div class="servicio-card xbox-card">
+          <div class="servicio-icon"><i class="fab fa-xbox"></i></div>
+          <h3>Xbox</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Eliminación de Stick Drift</li>
+            <li><i class="fas fa-check-circle"></i> Botones y bumpers caídos</li>
+            <li><i class="fas fa-check-circle"></i> Problemas de carga/batería</li>
+            <li><i class="fas fa-check-circle"></i> Fallas de emparejamiento</li>
+          </ul>
+          
+        </div>
+        <!-- PLAYSTATION -->
+        <div class="servicio-card ps-card">
+          <div class="servicio-icon"><i class="fab fa-playstation"></i></div>
+          <h3>PlayStation</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Mantenimiento DualSense / DS4</li>
+            <li><i class="fas fa-check-circle"></i> Calibración de potenciómetros</li>
+            <li><i class="fas fa-check-circle"></i> Puerto USB-C y pines de carga</li>
+            <li><i class="fas fa-check-circle"></i> Reemplazo de gomas conductivas</li>
+          </ul>
+          
+        </div>
+        <!-- NINTENDO -->
+        <div class="servicio-card switch-card">
+          <div class="servicio-icon"><i class="fas fa-gamepad"></i></div>
+          <h3>Nintendo Switch</h3>
+          <ul>
+            <li><i class="fas fa-hat-wizard" style="color: var(--primary);"></i> <strong>Instalación de Magia (Lite / V1-V2 / OLED)</strong></li>
+            <li><i class="fas fa-check-circle"></i> Joy-Con Drift definitivo</li>
+            <li><i class="fas fa-check-circle"></i> Switch Pro Controller</li>
+            <li><i class="fas fa-check-circle"></i> Cambio de rieles de sujeción</li>
+          </ul>
+          
+        </div>
+
+        <div class="servicio-card hardware-card" style="border-top: 4px solid var(--primary);">
+          <div class="servicio-icon"><i class="fas fa-microchip"></i></div>
+          <h3>Consolas & Hardware</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Reemplazo de puertos HDMI</li>
+            <li><i class="fas fa-check-circle"></i> Cambio y aumento de Disco Duro (HDD/SSD)</li>
+            <li><i class="fas fa-check-circle"></i> Limpieza profunda del sistema</li>
+            <li><i class="fas fa-check-circle"></i> Cambio de pasta térmica premium</li>
+          </ul>
+          
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ ELEGIRNOS -->
+  <section class="porque" id="nosotros">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Garantía de calidad</span>
+        <h2>¿Por qué reparar con nosotros?</h2>
+      </div>
+      <div class="porque-grid">
+        <div class="porque-item">
+          <div class="porque-icon"><i class="fas fa-microchip"></i></div>
+          <h4>Componentes Premium</h4>
+          <p>Olvídate de piezas genéricas malas. Usamos refacciones de grado original para máxima vida útil.</p>
+        </div>
+        <div class="porque-item">
+          <div class="porque-icon"><i class="fas fa-clock"></i></div>
+          <h4>Entrega en tiempo récord</h4>
+          <p>Sabemos que quieres jugar ya. Evaluamos y solucionamos la mayoría de fallas en menos de 2 horas.</p>
+        </div>
+        <div class="porque-item">
+          <div class="porque-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Garantía Real</h4>
+          <p>Cada control va respaldado por 30 días de garantía.</p>
+        </div>
+        <div class="porque-item">
+          <div class="porque-icon"><i class="fas fa-user-check"></i></div>
+          <h4>Laboratorio Técnico</h4>
+          <p>Más de 5 años diagnosticando y rescatando equipo con herramientas profesionales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRAESTRUCTURA -->
+  <section class="galeria">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Infraestructura</span>
+        <h2>Laboratorio Técnico</h2>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <i class="fas fa-tools"></i>
+          <span>Estaciones de Soldadura Especializada</span>
+        </div>
+        <div class="galeria-item">
+          <i class="fas fa-microscope"></i>
+          <span>Diagnóstico por Software y Osciloscopio</span>
+        </div>
+        <div class="galeria-item">
+          <i class="fas fa-boxes"></i>
+          <span>Stock Permanente de Refacciones</span>
+        </div>
+        <div class="galeria-item">
+          <i class="fas fa-user-cog"></i>
+          <span>Atención Directa del Técnico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <div class="contacto-wrapper">
+        <div class="contacto-info">
+          <span class="section-tag">Ubicación</span>
+          <h2>Visítanos en Villa de Álvarez</h2>
+
+          <div class="contacto-detalle">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Dirección física</strong>
+              <p>Real Pereira 10, Santa Cristina, CP 28973. Cd. de Villa de Álvarez, Col.</p>
+            </div>
+          </div>
+          
+          <div class="contacto-detalle">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>Horas de servicio</strong>
+              <p>Lunes a Sábado · 9:00 a.m. a 8:00 p.m.</p>
+              <span id="status-badge"></span>
+            </div>
+          </div>
+          
+          <div class="contacto-detalle">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <strong>Línea Telefónica</strong>
+              <p>312 381 6985</p>
+            </div>
+          </div>
+          
+          <div class="contacto-acciones">
+            <a href="#" class="btn btn-primary" id="mapBtn"><i class="fas fa-route"></i> Cómo llegar</a>
+            <a href="tel:+523123816985" class="btn btn-outline"><i class="fas fa-phone-alt"></i> Llamar</a>
+          </div>
+        </div>
+
+        <div class="contacto-mapa">
+          <div class="map-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.76158932166!2d-103.74681192533065!3d19.249219446512807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84255b007a27d919%3A0x4fef6bf4531a0169!2sReparaci%C3%B3nes%20de%20controles%20Xbox%2C%20Playstation%20y%20Nintendo%20Switch%20Colima!5e0!3m2!1ses-419!2smx!4v1791683270107!5m2!1ses-419!2smx" title="Ubicación del taller en Google Maps" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <i class="fas fa-gamepad" style="color: var(--primary);"></i> Reparaciones de controles Xbox, Playstation y Nintendo Switch Colima
+          <p>Expertos en hardware de entretenimiento desde 2021</p>
+        </div>
+        <div class="footer-links">
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Reparaciones de controles Xbox, Playstation y Nintendo Switch Colima. Todos los derechos reservados.</p>
+        <p><i class="fas fa-sync-alt" style="color: var(--primary);"></i> Sitio Optimizado</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/523123816985?text=Hola,%20necesito%20cotizar%20la%20reparación%20de%20un%20control" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Enlace al JS externo -->
+  <script src="script.js?v=20261011" defer></script>
+</body>
+</html>
