@@ -98,6 +98,41 @@ function dineroLegible(n) {
     });
   }
 
+  // --- 2a. MENÚ ☰ EN CELULAR ---
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  if (navbar && navToggle && navMenu) {
+    const abrirCerrarMenu = function(abrir) {
+      navbar.classList.toggle('menu-abierto', abrir);
+      navToggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+      // Se cambia solo la clase del ícono (reemplazar el elemento rompería la detección de "toque fuera")
+      const icono = navToggle.querySelector('i');
+      if (icono) icono.className = abrir ? 'fas fa-xmark' : 'fas fa-bars';
+    };
+
+    navToggle.addEventListener('click', function() {
+      abrirCerrarMenu(!navbar.classList.contains('menu-abierto'));
+    });
+
+    // Se cierra al elegir una sección, al tocar fuera, con Escape o al agrandar la pantalla
+    navMenu.addEventListener('click', function(e) {
+      if (e.target.closest('a')) abrirCerrarMenu(false);
+    });
+    document.addEventListener('click', function(e) {
+      if (navbar.classList.contains('menu-abierto') && !e.composedPath().includes(navbar)) abrirCerrarMenu(false);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navbar.classList.contains('menu-abierto')) {
+        abrirCerrarMenu(false);
+        navToggle.focus();
+      }
+    });
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 640) abrirCerrarMenu(false);
+    });
+  }
+
   // --- 2b. APARICIÓN SUAVE AL HACER SCROLL ---
   const revealTargets = document.querySelectorAll(
     '.section-header, .servicio-card, .porque-item, .galeria-item, .cotizador-wrapper, .rastreo-wrapper, .contacto-wrapper'
