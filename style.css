@@ -249,6 +249,29 @@ nav, section, footer, .whatsapp-float {
   transform: scaleX(1);
 }
 
+/* Botón de menú ☰ (solo se muestra en celular) */
+.nav-toggle {
+  display: none;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  font-size: 1.15rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.navbar.menu-abierto .nav-toggle {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(255, 170, 0, 0.08);
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
   min-height: 100vh;
@@ -1350,7 +1373,48 @@ footer::before {
 }
 
 @media (max-width: 640px) {
-  .nav-links { display: none; }
+  /* Barra superior: logo a la izquierda y botón ☰ a la derecha */
+  .nav-container { flex-direction: row; justify-content: space-between; align-items: center; gap: 0.75rem; text-align: left; }
+  .nav-logo { flex: 1; min-width: 0; justify-content: flex-start; font-size: 0.88rem; }
+  .nav-toggle { display: inline-flex; }
+
+  /* Menú desplegable */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 1rem 1rem;
+    background: #0d0e12; /* sólido: un desenfoque anidado dentro de la barra se vería transparente */
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+
+  .navbar.menu-abierto .nav-links {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav-links li { border-bottom: 1px solid var(--border); }
+  .nav-links li:last-child { border-bottom: none; }
+
+  .nav-links a {
+    display: block;
+    padding: 0.95rem 0.25rem;
+    font-size: 1.05rem;
+    color: var(--text-main);
+  }
+
+  .nav-links a::after { display: none; }
+  .nav-links a:active { color: var(--primary); }
+
   .hero h1 { font-size: 2.2rem; }
   .section-header h2 { font-size: 2rem; }
   .footer-grid { flex-direction: column; text-align: center; gap: 1.5rem; }
